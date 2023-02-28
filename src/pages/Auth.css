@@ -1,0 +1,15 @@
+.main{
+    background-color: skyblue;
+   
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
