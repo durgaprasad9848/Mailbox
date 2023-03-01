@@ -17,7 +17,10 @@ export const Welcome = () => {
       <h1>Welcome to your mail box</h1>
       <nav> 
       <button onClick={composeHandler}>Compose</button>
-      <button>Indbox</button>
+      <button onClick={(e)=>{
+        e.preventDefault();
+        navigate('/Indbox');
+      }}>Indbox</button>
       <button>Sentbox</button>
       <button
         onClick={(e) => {

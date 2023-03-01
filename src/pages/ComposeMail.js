@@ -24,6 +24,7 @@ const ComposeMail = () => {
     const data = {
         subject: sub.current.value,
         description: mailContent,
+        senderemail: localStorage.getItem("email").replace("@gmail.com",""),
       };
       //Storing in receiver mail
       await axios

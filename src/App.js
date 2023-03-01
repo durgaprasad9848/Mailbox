@@ -1,3 +1,4 @@
+import { Indbox } from "./pages/Indbox";
 import { Welcome } from "./pages/Welcome";
 import { Auth } from "./pages/Auth";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         {isLogin && <Route path="/Welcome" element={<Welcome/>}/>}
         <Route path ="/Compose" element={<ComposeMail/>}/>
+        <Route path ="/Indbox" element={<Indbox/>}/>
        
       </Routes>
     
