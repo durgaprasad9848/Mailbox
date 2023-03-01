@@ -17,11 +17,12 @@ export const Auth = () => {
   var Login = useSelector((state) => state.auth.Login);
   const buttonHandler = async (e) => {
     e.preventDefault();
+    var emailval = email.current.value;
+    localStorage.setItem("email",emailval);
+    var pwdval = pwd.current.value;
 
     if (Login) {
-      const emailval = email.current.value;
-      const pwdval = pwd.current.value;
-
+       
       try {
         const response = await fetch(
           "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDRuVNpK483qXGu6QL_IOKaFmOV7seq2_4",
@@ -53,8 +54,7 @@ export const Auth = () => {
         alert(error);
       }
     } else {
-      const emailval = email.current.value;
-      const pwdval = pwd.current.value;
+   
       const cnpwdval = cnpwd.current.value;
       if (pwdval == cnpwdval) {
         try {

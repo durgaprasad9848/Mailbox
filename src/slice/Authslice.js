@@ -4,7 +4,7 @@ const authSlice = createSlice({
     name : 'login and signup',
     initialState: {
         Login:true,
-        isLogin:false,
+        isLogin:!!(localStorage.getItem('token')),
     },
     reducers: {
         change: (state)=>{
@@ -15,6 +15,8 @@ const authSlice = createSlice({
         },
         setLogout : (state,action)=>{
             state.isLogin = !state.isLogin;
+            localStorage.removeItem('email');
+            localStorage.removeItem('token');
         }
     }
 
