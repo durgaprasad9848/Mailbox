@@ -4,6 +4,8 @@ import { Auth } from "./pages/Auth";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import ComposeMail from "./pages/ComposeMail";
+import { Indexitem } from "./pages/Indexitem";
+ 
 function App() {
   const isLogin = useSelector((state)=>state.auth.isLogin);
  
@@ -14,8 +16,9 @@ function App() {
       {isLogin && <Welcome/>}
       <Routes>
         {isLogin && <Route path="/Welcome" element={<Welcome/>}/>}
-        <Route path ="/Compose" element={<ComposeMail/>}/>
-        <Route path ="/Indbox" element={<Indbox/>}/>
+        {isLogin && <Route path ="/Compose" element={<ComposeMail/>}/> }
+        {isLogin && <Route path ="/Indbox" element={<Indbox/>}/> }
+        {isLogin && <Route path ="/Indexitem/:id" element={<Indexitem/>} /> }
        
       </Routes>
     
