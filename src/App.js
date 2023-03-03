@@ -7,9 +7,14 @@ import ComposeMail from "./pages/ComposeMail";
 import { Indexitem } from "./pages/Indexitem";
 import { Sentbox } from "./pages/Sentbox";
 import { Sentitem } from "./pages/Sentitem";
+import { fetchDataind } from "./slice/Contentslice";
+import { useDispatch } from "react-redux";
 function App() {
   const isLogin = useSelector((state)=>state.auth.isLogin);
- 
+  const dispatch = useDispatch();
+  setInterval(()=>{
+    fetchDataind(dispatch);
+  },2000);
   return (
     <BrowserRouter> 
     
