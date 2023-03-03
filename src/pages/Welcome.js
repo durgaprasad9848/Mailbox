@@ -34,7 +34,10 @@ export const Welcome = () => {
         e.preventDefault();
         navigate('/Indbox');
       }}>Indbox {(count>0)?count:""} </button>
-      <button>Sentbox</button>
+      <button onClick={(e)=>{
+        e.preventDefault();
+        navigate('/Sentbox');
+      }}>Sentbox</button>
       <button
         onClick={async(e) => {
           e.preventDefault();

@@ -5,7 +5,8 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import ComposeMail from "./pages/ComposeMail";
 import { Indexitem } from "./pages/Indexitem";
- 
+import { Sentbox } from "./pages/Sentbox";
+import { Sentitem } from "./pages/Sentitem";
 function App() {
   const isLogin = useSelector((state)=>state.auth.isLogin);
  
@@ -18,7 +19,9 @@ function App() {
         {isLogin && <Route path="/Welcome" element={<Welcome/>}/>}
         {isLogin && <Route path ="/Compose" element={<ComposeMail/>}/> }
         {isLogin && <Route path ="/Indbox" element={<Indbox/>}/> }
+        {isLogin && <Route path = "/Sentbox" element={<Sentbox/>} />}
         {isLogin && <Route path ="/Indexitem/:id" element={<Indexitem/>} /> }
+        {isLogin && <Route path ="/Sentboxitem/:id" element={<Sentitem/>} /> }
        
       </Routes>
     

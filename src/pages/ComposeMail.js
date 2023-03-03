@@ -21,32 +21,18 @@ const ComposeMail = () => {
     console.log(recmail.current.value,sub.current.value);
     // Send the mail using the mailContent variable
     
-    const data = {
-        subject: sub.current.value,
-        description: mailContent,
-        senderemail: localStorage.getItem("email").replace("@gmail.com",""),
-        isVisited:false,
-      };
-      //Storing in receiver mail
-      await axios
-        .post(
-          `https://test-api-c7d27-default-rtdb.firebaseio.com/${recmail.current.value.replace("@gmail.com","")}/receive.json`,
-          data
-        )
-        .then((response) => {
-          console.log(response);
-          sub.current.value = "";
-          recmail.current.value = "";
-          setEditorState(EditorState.createEmpty())
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+   
+        const recdata = {
+          subject: sub.current.value,
+          description: mailContent,
+          receiveremail: recmail.current.value,
+          isVisited:false,
+        };
         //Storing in send mail
         await axios
         .post(
           `https://test-api-c7d27-default-rtdb.firebaseio.com/${localStorage.getItem('email').replace("@gmail.com","")}/send.json`,
-          data
+          recdata
         )
         .then((response) => {
           console.log(response);
@@ -54,6 +40,37 @@ const ComposeMail = () => {
         .catch((error) => {
           console.log(error);
         });
+
+
+
+
+
+
+
+        const senddata = {
+          subject: sub.current.value,
+          description: mailContent,
+          senderemail: localStorage.getItem("email").replace("@gmail.com",""),
+      
+          isVisited:false,
+        };
+  
+      
+        //Storing in receiver mail
+        await axios
+          .post(
+            `https://test-api-c7d27-default-rtdb.firebaseio.com/${recmail.current.value.replace("@gmail.com","")}/receive.json`,
+            senddata
+          )
+          .then((response) => {
+            console.log(response);
+            sub.current.value = "";
+            recmail.current.value = "";
+            setEditorState(EditorState.createEmpty())
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
     }
 

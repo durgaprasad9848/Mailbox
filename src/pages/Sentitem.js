@@ -3,18 +3,18 @@ import { useParams } from "react-router-dom";
  
 import { useDispatch } from "react-redux";
 import axios from "axios";
-export const Indexitem = () =>{
-    var initial = true;
+export const Sentitem = () =>{
+ 
     const dispatch = useDispatch();
-    const indboxdata = useSelector((state)=>state.cont.indboxdata);
+    const sentboxdata = useSelector((state)=>state.cont.sentboxdata);
     const params = useParams();
  
   //  console.log(indboxdata[params.id].isVisited,"isvisited item");
    
     return(<div>
-        <p><b>Send by:</b>{indboxdata[params.id].senderemail}</p>
-        <p><b>Sub:</b> {indboxdata[params.id].subject} </p>
-        <p><b>Descrioption:</b> {indboxdata[params.id].description} </p>
- 
+        <p><b>Sent to :</b>{sentboxdata[params.id].receiveremail}</p>
+        <p><b>Sub :</b> {sentboxdata[params.id].subject} </p>
+        <p><b>Descrioption :</b> {sentboxdata[params.id].description} </p>
+     
     </div>);
 }
