@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { setLogout } from "../slice/Authslice";
 import { useDispatch } from "react-redux";
 import {Card} from 'react-bootstrap';
@@ -6,17 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { updateCount } from "../slice/Contentslice";
-
+ 
 
 export const Welcome = () => {
-  var count =0;
+  var count =useSelector((state)=>state.cont.totalUnread);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inboxdata = useSelector((state)=>state.cont.indboxdata);
 
-  Object.keys(inboxdata).map((key) => { if(!inboxdata[key].isVisited){ count++;  } });
-  console.log(count);
-  dispatch(updateCount(count));   
+ 
+ 
+ 
 
 
   const composeHandler =(e)=>{

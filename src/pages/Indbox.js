@@ -4,37 +4,26 @@ import { Indboxlist } from "./Indboxlist";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { storeindbox } from "../slice/Contentslice";
-
+import { fetchDataind } from "../slice/Contentslice";
+import { updateCount } from "../slice/Contentslice";
+//import { countfun } from "../slice/Contentslice";
 export const Indbox = () => {
     var initial = true;
     const [data, setData] = useState([]);
   const dispatch = useDispatch();
  // var inboxdata = useSelector((state)=>state.cont.inboxdata);
  const inboxdata = useSelector((state)=>state.cont.indboxdata);
-  const mail = localStorage.getItem("email").replace("@gmail.com", "");
-  console.log(mail);
-  //When receiving data for display we must put it inside the useEffect and call the funtion and try include try and catch block
-  useEffect(() => {
-    if(initial){ 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://test-api-c7d27-default-rtdb.firebaseio.com/${mail}/receive.json`
-        );
-            if(response.data != null){
-            dispatch(storeindbox(response.data));
-            }
-            // setData(response.data);
-        
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-    initial = false;
-    }
+ 
+ 
+  //When receiving data for display we must put it inside the useEffect and call the funtion and include try and catch block
 
-  }, [mail]);
+ 
+
+  useEffect(() => {
+    fetchDataind(dispatch,inboxdata);
+    dispatch(updateCount());
+   // countfun(dispatch,inboxdata)
+  },[]);
 
   return (
     <div>

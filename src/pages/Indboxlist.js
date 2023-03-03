@@ -2,9 +2,14 @@ import {Card} from 'react-bootstrap'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { fetchDataind } from '../slice/Contentslice';
+import { useDispatch } from 'react-redux';
 export const Indboxlist = (props)=>{
     const isVisited = useSelector((state)=>state.cont.isVisited);
     const indboxdata = useSelector((state)=>state.cont.indboxdata);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
  //   console.log("isVisited list",indboxdata[props.id].isVisited);
   //  console.log(`https://test-api-c7d27-default-rtdb.firebaseio.com/pravalika/receive//pravalika/receive/-NPRyuGmbQwvoUc_Qg9k.json`)
 
@@ -41,22 +46,47 @@ export const Indboxlist = (props)=>{
            path,
           { ...data, isVisited: true }
         )
-        .then((response) => console.log(response))
+        .then((response) => {console.log(response); fetchDataind(dispatch);})
         .catch((error) => console.log(error));
 
 
     }
 
+
+    const deleteHandler = async() =>{
+         await axios
+        .delete(
+          `https://test-api-c7d27-default-rtdb.firebaseio.com/${
+            localStorage.getItem("email").replace("@gmail.com", "")
+          }/receive/${props.id}.json`
+        )
+        .then((response) => {
+          console.log(response);
+          fetchDataind(dispatch);
+ 
+        })
+        .catch((error) => {
+          console.log(error);
+   
+        });
+        
+    }
+
+
     const path = `/Indexitem/${props.id}`;
 
     return(
-    <NavLink to ={path} onClick={()=>clikcHandler()}   > 
-    <Card key={props.id}  > 
-     
-        {(props.isVisited)?"":"unread"}  {props.senderemail} - {props.subject}  
+    <div>
     
+    <Card key={props.id}  > 
+    <NavLink to ={path} onClick={()=>clikcHandler()}   > 
+        {(props.isVisited)?"":"unread"}  {props.senderemail} - {props.subject}
+        </NavLink>
+        <button onClick={deleteHandler}>delete</button>
     </Card>
-    </NavLink>
+
+    
+    </div>
     )
     
 }

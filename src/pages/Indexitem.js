@@ -9,26 +9,6 @@ export const Indexitem = () =>{
     const indboxdata = useSelector((state)=>state.cont.indboxdata);
     const params = useParams();
  
-
-    // if(initial){ 
-    // const updateState = async() =>{
-    // await axios
-    // .put(
-    //   `https://test-api-c7d27-default-rtdb.firebaseio.com/${localStorage.getItem('email').replace("@gmail.com","")}/receive/${params.id}.json`,
-    //   indboxdata
-    // )
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-    // }
-    // updateState();
-    // initial = false;
-    // }
-
- 
   //  console.log(indboxdata[params.id].isVisited,"isvisited item");
    
     return(<div>
